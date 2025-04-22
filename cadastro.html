@@ -35,6 +35,8 @@
         <option>Campeonato – 15/06/2024 – AABB</option>
         <option>Desafio Noturno – 20/07/2024 – Reta do Aeroporto</option>
       </select>
+      <label>E-mail do Piloto</label>
+      <input type="email" id="email" required />
 
       <button type="submit">PAGAR</button>
     </form>
@@ -50,11 +52,12 @@
         equipe: document.getElementById('equipe').value,
         moto: document.getElementById('moto').value,
         categoria: document.getElementById('categoria').value,
-        evento: document.getElementById('evento').value
+        evento: document.getElementById('evento').value,
+	email: document.getElementById('email').value
       };
 
       try {
-        const response = await fetch('http://localhost:3000/criar-pagamento', {
+        const response = await fetch('http://arrancada-backend.onrender.com/criar-pagamento', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

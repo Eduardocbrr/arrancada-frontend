@@ -173,6 +173,46 @@ main.conteudo {
   resize: vertical;
 }
 
+/* Agenda de Eventos Estilo Velopark */
+.agenda-container {
+  background-color: #d1d1d1;
+  padding: 20px 0;
+  margin-top: 40px;
+}
+
+.agenda-container h2 {
+  margin-left: 40px;
+  font-size: 20px;
+  color: #111;
+}
+
+.agenda-lista {
+  background-color: #eee;
+  padding: 30px;
+  margin: 0 auto;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.agenda-evento {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.agenda-evento h3 {
+  font-size: 18px;
+  color: #000;
+  margin-bottom: 5px;
+}
+
+.agenda-evento p {
+  font-size: 14px;
+  color: #444;
+  margin: 0;
+}
+
 /* Estilo responsivo */
 @media screen and (max-width: 768px) {
   nav.menu {

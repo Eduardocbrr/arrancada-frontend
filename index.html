@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Arrancada Roraima - Home</title>
+  <title>Arrancada Roraima</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -16,21 +16,64 @@
       <a href="eventos.html" class="menu-item">Eventos</a>
       <a href="contato.html" class="menu-item">Contato</a>
       <a href="cadastro.html" class="menu-item">Inscrição de Piloto</a>
-      <a href="https://ingressos.exemplo.com" target="_blank" class="menu-item">Ingressos Aqui</a>
+      <a href="https://lets.events/e/festival-de-arrancada-em-sao-luiz-do-anaua?t=394fb76b-018c-4132-a610-d8703ee8e291" target="_blank" class="menu-item">Ingressos Aqui</a>
       <a href="login.html" class="menu-item">Login</a>
     </nav>
   </header>
 
   <main class="conteudo">
     <section class="banner">
-      <!-- Banner exemplo -->
       <img src="https://www.velopark.com.br/velopark/upload/site_banner/web/g/136.png?v1" alt="Banner do Evento" class="banner-imagem">
     </section>
 
-    <section class="apresentacao">
+    <section class="chamada">
       <h1>Velocidade e Emoção na Pista</h1>
       <p>Participe dos eventos mais emocionantes de arrancada em Roraima. Cadastre-se agora e sinta a adrenalina!</p>
     </section>
+
+    <!-- Agenda de Eventos -->
+    <section class="agenda-bloco">
+      <div class="agenda-titulo">
+        <h2>Agenda de Eventos</h2>
+      </div>
+      <div id="listaEventos" class="agenda-lista">
+        <!-- Eventos inseridos dinamicamente -->
+      </div>
+    </section>
   </main>
+
+  <script>
+    const eventos = [
+      {
+        nome: "Campeonato Estadual de Arrancada",
+        data: "15/06/2024",
+        local: "AABB",
+        cidade: "Boa Vista - RR"
+      },
+      {
+        nome: "Desafio Noturno",
+        data: "20/07/2024",
+        local: "Reta do Aeroporto",
+        cidade: "Boa Vista - RR"
+      },
+      {
+        nome: "Grande Prêmio Roraima Racing",
+        data: "10/08/2024",
+        local: "Autódromo do Anauá",
+        cidade: "Boa Vista - RR"
+      }
+    ];
+
+    const container = document.getElementById("listaEventos");
+    eventos.forEach(evento => {
+      const div = document.createElement("div");
+      div.className = "evento-item";
+      div.innerHTML = `
+        <strong>${evento.nome}</strong><br>
+        <span>${evento.data} - ${evento.local} - ${evento.cidade}</span>
+      `;
+      container.appendChild(div);
+    });
+  </script>
 </body>
 </html>

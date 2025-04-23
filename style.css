@@ -128,12 +128,51 @@ main.conteudo {
   font-size: 14px;
 }
 
+/* Agenda de eventos na página inicial */
+.agenda-container {
+  background-color: #e0e0e0;
+  padding: 15px 30px;
+  margin-top: 40px;
+}
+
+.agenda-titulo {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.agenda-lista {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.agenda-evento {
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.agenda-evento:last-child {
+  border-bottom: none;
+}
+
+.agenda-evento h3 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.agenda-evento p {
+  font-size: 14px;
+  margin: 2px 0;
+}
+
 /* Página de contato */
 .contato {
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
   align-items: flex-start;
+  margin-top: 40px;
 }
 
 .contato-texto {
@@ -173,47 +212,6 @@ main.conteudo {
   resize: vertical;
 }
 
-/* Agenda de Eventos Estilo Velopark */
-.agenda-container {
-  background-color: #d1d1d1;
-  padding: 20px 0;
-  margin-top: 40px;
-}
-
-.agenda-container h2 {
-  margin-left: 40px;
-  font-size: 20px;
-  color: #111;
-}
-
-.agenda-lista {
-  background-color: #eee;
-  padding: 30px;
-  margin: 0 auto;
-  max-width: 1000px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.agenda-evento {
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 10px;
-}
-
-.agenda-evento h3 {
-  font-size: 18px;
-  color: #000;
-  margin-bottom: 5px;
-}
-
-.agenda-evento p {
-  font-size: 14px;
-  color: #444;
-  margin: 0;
-}
-
-/* Estilo responsivo */
 @media screen and (max-width: 768px) {
   nav.menu {
     flex-direction: column;

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cadastrar Piloto</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="formulario">
+    <h2>Cadastrar Piloto</h2>
+    <form id="formCadastro">
+      <label>Nome do Preparador</label>
+      <input type="text" id="preparador" required />
+
+      <label>Nome da Equipe</label>
+      <input type="text" id="equipe" required />
+
+      <label>Nome da Moto</label>
+      <input type="text" id="moto" required />
+
+      <label>Categoria da Moto</label>
+      <select id="categoria" required>
+        <option>-- Selecione --</option>
+        <option>4mm</option>
+        <option>70mm</option>
+        <option>CRF</option>
+        <option>City</option>
+        <option>Moto</option>
+      </select>
+
+      <label>Evento</label>
+      <select id="evento" required>
+        <option>-- Selecione --</option>
+        <option>Campeonato – 15/06/2024 – AABB</option>
+        <option>Desafio Noturno – 20/07/2024 – Reta do Aeroporto</option>
+      </select>
+      <label>E-mail do Piloto</label>
+      <input type="email" id="email" required />
+
+      <button type="submit">PAGAR</button>
+    </form>
+  </main>
+
+  <script>
+    const form = document.getElementById('formCadastro');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const dados = {
+        preparador: document.getElementById('preparador').value,
+        equipe: document.getElementById('equipe').value,
+        moto: document.getElementById('moto').value,
+        categoria: document.getElementById('categoria').value,
+        evento: document.getElementById('evento').value,
+	email: document.getElementById('email').value
+      };
+
+      try {
+        const response = await fetch('http://arrancada-backend.onrender.com/criar-pagamento', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(dados)
+        });
+
+        const data = await response.json();
+        if (data.link) {
+          window.location.href = data.link;
+        } else {
+          alert('Erro ao gerar link de pagamento.');
+        }
+      } catch (error) {
+        alert('Erro ao conectar com o servidor.');
+        console.error(error);
+      }
+    });
+  </script>
+</body>
+</html>

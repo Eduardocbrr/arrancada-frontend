@@ -2,117 +2,130 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cadastro de Piloto</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inscrição de Piloto</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
     }
 
     body {
+      font-family: Arial, sans-serif;
       background: url('https://media.jornaldooeste.com.br/2022/11/89dbd918-arrancada-guarapuava02.jpeg') no-repeat center center fixed;
       background-size: cover;
+      color: white;
     }
 
     .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
+      background-color: rgba(0, 0, 0, 0.75);
+      min-height: 100vh;
       width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.6);
-      z-index: -1;
+      padding: 60px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    .container {
+    .form-box {
+      background-color: #111111d9;
+      padding: 30px;
+      border-radius: 20px;
       max-width: 500px;
-      margin: 80px auto;
-      background: white;
-      padding: 40px;
-      border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 24px;
-      color: #111;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: 600;
-    }
-
-    input,
-    select {
       width: 100%;
-      padding: 10px;
-      margin-bottom: 16px;
-      border: 1px solid #ccc;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+
+    .form-box h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 28px;
+      color: #fff;
+    }
+
+    .form-box label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #f0f0f0;
+    }
+
+    .form-box input,
+    .form-box select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: none;
       border-radius: 8px;
+      background-color: #1e1e1e;
+      color: #fff;
       font-size: 14px;
     }
 
-    button {
+    .form-box input::placeholder {
+      color: #aaa;
+      font-style: italic;
+    }
+
+    .form-box button {
       width: 100%;
-      padding: 12px;
-      font-size: 16px;
-      background-color: #ff3c3c;
-      color: white;
+      padding: 14px;
       border: none;
-      border-radius: 8px;
+      background-color: #e62e00;
+      color: #fff;
+      font-size: 16px;
+      border-radius: 10px;
       cursor: pointer;
       transition: 0.3s;
     }
 
-    button:hover {
-      background-color: #e73333;
+    .form-box button:hover {
+      background-color: #c62800;
     }
   </style>
 </head>
 <body>
-  <div class="overlay"></div>
-  <div class="container">
-    <h2>Cadastrar Piloto</h2>
-    <form id="formCadastro">
-      <label for="preparador">Nome do Preparador</label>
-      <input type="text" id="preparador" required />
+  <div class="overlay">
+    <div class="form-box">
+      <h2>Inscrição de Piloto</h2>
+      <form id="formCadastro">
+        <label>Nome do Preparador</label>
+        <input type="text" id="preparador" placeholder="Nome ou apelido" required />
 
-      <label for="equipe">Nome da Equipe</label>
-      <input type="text" id="equipe" required />
+        <label>Nome da Equipe</label>
+        <input type="text" id="equipe" placeholder="Nome da equipe" required />
 
-      <label for="moto">Nome da Moto</label>
-      <input type="text" id="moto" required />
+        <label>Nome da Moto</label>
+        <input type="text" id="moto" placeholder="Nome da moto, se não houver, preencha com o modelo" required />
 
-      <label for="categoria">Categoria da Moto</label>
-      <select id="categoria" required>
-        <option value="">-- Selecione --</option>
-        <option>4mm</option>
-        <option>70mm</option>
-        <option>CRF</option>
-        <option>City</option>
-        <option>Moto</option>
-      </select>
+        <label>Nome do Piloto</label>
+        <input type="text" id="nomePiloto" placeholder="Nome do piloto da moto" required />
 
-      <label for="evento">Evento</label>
-      <select id="evento" required>
-        <option value="">-- Selecione --</option>
-        <option>Campeonato – 15/06/2024 – AABB</option>
-        <option>Desafio Noturno – 20/07/2024 – Reta do Aeroporto</option>
-      </select>
+        <label>E-mail do Piloto</label>
+        <input type="email" id="email" placeholder="E-mail para receber a confirmação da inscrição" required />
 
-      <label for="email">E-mail do Piloto</label>
-      <input type="email" id="email" required />
+        <label>Categoria da Moto</label>
+        <select id="categoria" required>
+          <option value="">-- Selecione --</option>
+          <option>4mm</option>
+          <option>70mm</option>
+          <option>CRF</option>
+          <option>City</option>
+          <option>Moto</option>
+        </select>
 
-      <button type="submit">PAGAR</button>
-    </form>
+        <label>Evento</label>
+        <select id="evento" required>
+          <option value="">-- Selecione --</option>
+          <option>Campeonato – 15/06/2024 – AABB</option>
+          <option>Desafio Noturno – 20/07/2024 – Reta do Aeroporto</option>
+        </select>
+
+        <button type="submit">PAGAR</button>
+      </form>
+    </div>
   </div>
 
   <script>
@@ -124,18 +137,19 @@
         preparador: document.getElementById('preparador').value,
         equipe: document.getElementById('equipe').value,
         moto: document.getElementById('moto').value,
-        categoria: document.getElementById('categoria').value,
-        evento: document.getElementById('evento').value,
+        nomePiloto: document.getElementById('nomePiloto').value,
         email: document.getElementById('email').value,
+        categoria: document.getElementById('categoria').value,
+        evento: document.getElementById('evento').value
       };
 
       try {
         const response = await fetch('https://arrancada-backend.onrender.com/criar-pagamento', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
           },
-          body: JSON.stringify(dados),
+          body: JSON.stringify(dados)
         });
 
         const data = await response.json();

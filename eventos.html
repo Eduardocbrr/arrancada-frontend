@@ -2,8 +2,8 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Arrancada Roraima</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eventos - Arrancada Roraima</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <style>
     * {
@@ -16,14 +16,13 @@
     body {
       background: url('https://media.jornaldooeste.com.br/2022/11/89dbd918-arrancada-guarapuava02.jpeg') no-repeat center center fixed;
       background-size: cover;
-      height: 100vh;
       color: white;
     }
 
     .overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.65);
+      background: rgba(0, 0, 0, 0.7);
       z-index: 0;
     }
 
@@ -67,62 +66,42 @@
       color: #ff3c3c;
     }
 
-    .hero {
+    main {
       position: relative;
       z-index: 1;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      padding: 120px 30px 40px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 36px;
       text-align: center;
-      padding: 0 20px;
-    }
-
-    .hero h2 {
-      font-size: 48px;
-      margin-bottom: 20px;
-    }
-
-    .hero p {
-      font-size: 20px;
       margin-bottom: 40px;
-      max-width: 700px;
     }
 
-    .buttons a {
-      display: inline-block;
-      margin: 10px;
-      padding: 12px 24px;
-      background-color: #ff3c3c;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: background-color 0.3s;
+    .evento {
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(4px);
     }
 
-    .buttons a:hover {
-      background-color: #e73333;
+    .evento h2 {
+      color: #ff3c3c;
+      margin-bottom: 10px;
     }
 
-    @media (max-width: 768px) {
-      .hero h2 {
-        font-size: 36px;
-      }
+    .evento p {
+      margin-bottom: 6px;
+    }
 
-      .hero p {
-        font-size: 18px;
-      }
-
-      nav a {
-        margin-left: 12px;
-        font-size: 14px;
-      }
-
-      .logo {
-        font-size: 18px;
-      }
+    .evento small {
+      display: block;
+      color: #ccc;
+      margin-top: 8px;
     }
   </style>
 </head>
@@ -142,12 +121,22 @@
     </nav>
   </header>
 
-  <section class="hero">
-    <h2>Velocidade e Emoção na Pista</h2>
-    <p>
-      Participe dos eventos mais emocionantes de arrancada em Roraima. <br />
-      Cadastre-se agora e sinta a adrenalina!
-    </p>
-  </section>
+  <main>
+    <h1>Próximos Eventos</h1>
+
+    <div class="evento">
+      <h2>Campeonato de Arrancada - AABB</h2>
+      <p>Data: 15 de junho de 2024</p>
+      <p>Local: Pista da AABB, Boa Vista - RR</p>
+      <small>Prepare sua moto e venha mostrar sua velocidade!</small>
+    </div>
+
+    <div class="evento">
+      <h2>Desafio Noturno - Reta do Aeroporto</h2>
+      <p>Data: 20 de julho de 2024</p>
+      <p>Local: Reta do Aeroporto, Boa Vista - RR</p>
+      <small>Uma noite de pura adrenalina sob os holofotes!</small>
+    </div>
+  </main>
 </body>
 </html>

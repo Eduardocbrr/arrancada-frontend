@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel do Administrador</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: url('https://media.jornaldooeste.com.br/2022/11/89dbd918-arrancada-guarapuava02.jpeg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.7);
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 500px;
+      margin: 100px auto;
+      background-color: #ffffffee;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: 600;
+      color: #222;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      outline: none;
+      transition: border 0.3s ease;
+    }
+
+    input:focus {
+      border-color: #007bff;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .voltar {
+      display: block;
+      text-align: center;
+      margin-top: 15px;
+      color: #555;
+      text-decoration: none;
+    }
+
+    .voltar:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+  <div class="container">
+    <h2>Adicionar Novo Evento</h2>
+    <form id="formEvento">
+      <label for="nomeEvento">Nome do Evento</label>
+      <input type="text" id="nomeEvento" required />
+
+      <label for="dataEvento">Data do Evento</label>
+      <input type="date" id="dataEvento" required />
+
+      <label for="localEvento">Local do Evento</label>
+      <input type="text" id="localEvento" required />
+
+      <button type="submit">Salvar Evento</button>
+    </form>
+    <a href="index.html" class="voltar">Voltar para o site</a>
+  </div>
+
+  <script>
+    document.getElementById('formEvento').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const evento = {
+        nome: document.getElementById('nomeEvento').value,
+        data: document.getElementById('dataEvento').value,
+        local: document.getElementById('localEvento').value
+      };
+
+      try {
+        const resposta = await fetch('https://arrancada-backend.onrender.com/eventos', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(evento)
+        });
+
+        if (resposta.ok) {
+          alert('Evento salvo com sucesso!');
+          document.getElementById('formEvento').reset();
+        } else {
+          alert('Erro ao salvar evento.');
+        }
+      } catch (erro) {
+        console.error('Erro:', erro);
+        alert('Erro ao conectar com o servidor.');
+      }
+    });
+  </script>
+</body>
+</html>

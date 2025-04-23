@@ -2,45 +2,118 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Cadastrar Piloto</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro de Piloto</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: url('https://media.jornaldooeste.com.br/2022/11/89dbd918-arrancada-guarapuava02.jpeg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: -1;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 80px auto;
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 24px;
+      color: #111;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      background-color: #ff3c3c;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #e73333;
+    }
+  </style>
 </head>
 <body>
-  <main class="formulario">
+  <div class="overlay"></div>
+  <div class="container">
     <h2>Cadastrar Piloto</h2>
     <form id="formCadastro">
-      <label>Nome do Preparador</label>
+      <label for="preparador">Nome do Preparador</label>
       <input type="text" id="preparador" required />
 
-      <label>Nome da Equipe</label>
+      <label for="equipe">Nome da Equipe</label>
       <input type="text" id="equipe" required />
 
-      <label>Nome da Moto</label>
+      <label for="moto">Nome da Moto</label>
       <input type="text" id="moto" required />
 
-      <label>Categoria da Moto</label>
+      <label for="categoria">Categoria da Moto</label>
       <select id="categoria" required>
-        <option>-- Selecione --</option>
+        <option value="">-- Selecione --</option>
         <option>4mm</option>
         <option>70mm</option>
         <option>CRF</option>
         <option>City</option>
+        <option>Moto</option>
       </select>
 
-      <label>Evento</label>
+      <label for="evento">Evento</label>
       <select id="evento" required>
-        <option>-- Selecione --</option>
+        <option value="">-- Selecione --</option>
         <option>Campeonato – 15/06/2024 – AABB</option>
         <option>Desafio Noturno – 20/07/2024 – Reta do Aeroporto</option>
       </select>
-      
-      <label>E-mail do Piloto</label>
+
+      <label for="email">E-mail do Piloto</label>
       <input type="email" id="email" required />
 
       <button type="submit">PAGAR</button>
     </form>
-  </main>
+  </div>
 
   <script>
     const form = document.getElementById('formCadastro');
@@ -52,16 +125,17 @@
         equipe: document.getElementById('equipe').value,
         moto: document.getElementById('moto').value,
         categoria: document.getElementById('categoria').value,
-        evento: document.getElementById('evento').value
+        evento: document.getElementById('evento').value,
+        email: document.getElementById('email').value,
       };
 
       try {
         const response = await fetch('https://arrancada-backend.onrender.com/criar-pagamento', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
           },
-          body: JSON.stringify(dados)
+          body: JSON.stringify(dados),
         });
 
         const data = await response.json();

@@ -3,158 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Arrancada Roraima</title>
+  <title>Arrancada Roraima - Home</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body, html {
-      height: 100%;
-      font-family: 'Barlow Condensed', sans-serif;
-    }
-
-    .background {
-      background: url('https://media.jornaldooeste.com.br/2022/11/89dbd918-arrancada-guarapuava02.jpeg') no-repeat center center/cover;
-      height: 100vh;
-      position: relative;
-    }
-
-    .overlay {
-      background-color: rgba(0, 0, 0, 0.7);
-      height: 100%;
-      width: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-
-    header {
-      position: absolute;
-      top: 0;
-      width: 100%;
-      padding: 20px 40px;
-      background: linear-gradient(to right, #000000, #1a1a1a);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 10;
-    }
-
-    header img {
-      height: 60px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 20px;
-    }
-
-    .btn-menu {
-      color: white;
-      font-size: 18px;
-      letter-spacing: 1px;
-      text-decoration: none;
-      padding: 10px 20px;
-      transition: 0.3s ease-in-out;
-      position: relative;
-    }
-
-    .btn-menu span {
-      position: relative;
-      z-index: 2;
-    }
-
-    .btn-menu::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(to right, #333333, #1a1a1a);
-      z-index: 1;
-      transition: width 0.3s ease-in-out;
-    }
-
-    .btn-menu:hover::before {
-      width: 100%;
-    }
-
-    .btn-menu:hover span {
-      color: white;
-    }
-
-    .hero-text {
-      position: absolute;
-      top: 55%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      color: white;
-      z-index: 5;
-      max-width: 90%;
-    }
-
-    .hero-text h1 {
-      font-size: 48px;
-      margin-bottom: 10px;
-    }
-
-    .hero-text p {
-      font-size: 22px;
-    }
-
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .nav-links {
-        flex-direction: column;
-        margin-top: 10px;
-      }
-
-      .btn-menu {
-        padding: 8px 16px;
-      }
-
-      .hero-text h1 {
-        font-size: 32px;
-      }
-
-      .hero-text p {
-        font-size: 18px;
-      }
-    }
-  </style>
 </head>
 <body>
-  <div class="background">
-    <div class="overlay"></div>
+  <header class="logo">
+    <a href="index.html">
+      <img src="ChatGPT Image 23 de abr. de 2025, 08_35_58.png" alt="Arrancada Roraima" />
+    </a>
+    <nav class="menu">
+      <a href="index.html" class="menu-item ativo">Home</a>
+      <a href="eventos.html" class="menu-item">Eventos</a>
+      <a href="contato.html" class="menu-item">Contato</a>
+      <a href="cadastro.html" class="menu-item">Inscrição de Piloto</a>
+      <a href="https://ingressos.exemplo.com" target="_blank" class="menu-item">Ingressos Aqui</a>
+      <a href="login.html" class="menu-item">Login</a>
+    </nav>
+  </header>
 
-    <header>
-      <a href="index.html">
-        <img src="logo.png" alt="Logo Arrancada Roraima" />
-      </a>
-      <nav class="nav-links">
-        <a href="index.html" class="btn btn-menu"><span>HOME</span></a>
-        <a href="eventos.html" class="btn btn-menu"><span>EVENTOS</span></a>
-        <a href="ingressos.html" class="btn btn-menu"><span>INGRESSOS</span></a>
-        <a href="cadastro.html" class="btn btn-menu"><span>INSCRIÇÕES PILOTOS</span></a>
-        <a href="contato.html" class="btn btn-menu"><span>CONTATO</span></a>
-      </nav>
-    </header>
+  <main class="conteudo">
+    <section class="banner">
+      <!-- Banner exemplo -->
+      <img src="https://www.velopark.com.br/velopark/upload/site_banner/web/g/136.png?v1" alt="Banner do Evento" class="banner-imagem">
+    </section>
 
-    <div class="hero-text">
+    <section class="apresentacao">
       <h1>Velocidade e Emoção na Pista</h1>
       <p>Participe dos eventos mais emocionantes de arrancada em Roraima. Cadastre-se agora e sinta a adrenalina!</p>
-    </div>
-  </div>
+    </section>
+  </main>
 </body>
 </html>

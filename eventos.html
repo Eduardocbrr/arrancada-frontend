@@ -2,106 +2,62 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Eventos - Arrancada Roraima</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="topo">
-    <div class="logo">
-      <a href="index.html"><img src="logo.png" alt="Logo Arrancada Roraima" /></a>
-    </div>
+  <header class="logo">
+    <a href="index.html">
+      <img src="ChatGPT Image 23 de abr. de 2025, 08_35_58.png" alt="Arrancada Roraima" />
+    </a>
     <nav class="menu">
-      <a href="eventos.html">Eventos</a>
-      <a href="contato.html">Contato</a>
-      <a href="cadastro.html">Inscrição Pilotos</a>
-      <a href="ingressos.html">Ingressos</a>
+      <a href="index.html" class="menu-item">Home</a>
+      <a href="eventos.html" class="menu-item ativo">Eventos</a>
+      <a href="contato.html" class="menu-item">Contato</a>
+      <a href="cadastro.html" class="menu-item">Inscrição de Piloto</a>
+      <a href="https://ingressos.exemplo.com" target="_blank" class="menu-item">Ingressos Aqui</a>
+      <a href="login.html" class="menu-item">Login</a>
     </nav>
   </header>
 
-  <main class="conteudo-centro">
-    <h1 class="titulo-principal">Próximos Eventos</h1>
-    <div class="lista-eventos">
-      <div class="card-evento">
-        <h3>Campeonato Estadual de Arrancada</h3>
-        <p><strong>Data:</strong> 15 de Junho de 2024</p>
-        <p><strong>Local:</strong> AABB, Boa Vista - RR</p>
+  <main class="conteudo">
+    <section class="banner">
+      <img src="https://www.velopark.com.br/velopark/upload/site_banner/web/g/136.png?v1" alt="Banner do Evento" class="banner-imagem">
+    </section>
+
+    <section class="eventos-cards">
+      <h1>Próximos Eventos</h1>
+
+      <div class="eventos-grid">
+        <div class="card-evento">
+          <img src="img_evento1.jpg" alt="Evento 1" class="icone-evento">
+          <h2>Campeonato Estadual</h2>
+          <p><strong>Data:</strong> 15/06/2024</p>
+          <p><strong>Local:</strong> AABB - Boa Vista</p>
+          <p>Disputas entre os melhores pilotos de Roraima.</p>
+          <button class="botao-evento">Ver mais</button>
+        </div>
+
+        <div class="card-evento">
+          <img src="img_evento2.jpg" alt="Evento 2" class="icone-evento">
+          <h2>Desafio Noturno</h2>
+          <p><strong>Data:</strong> 20/07/2024</p>
+          <p><strong>Local:</strong> Reta do Aeroporto</p>
+          <p>Corrida sob as luzes com muita adrenalina.</p>
+          <button class="botao-evento">Ver mais</button>
+        </div>
+
+        <!-- Você pode adicionar mais cards abaixo -->
       </div>
-      <div class="card-evento">
-        <h3>Desafio Noturno</h3>
-        <p><strong>Data:</strong> 20 de Julho de 2024</p>
-        <p><strong>Local:</strong> Reta do Aeroporto</p>
-      </div>
-    </div>
+    </section>
   </main>
 
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: url('https://media.jornaldooeste.com.br/2022/11/89dbd918-arrancada-guarapuava02.jpeg') no-repeat center center fixed;
-      background-size: cover;
-      font-family: Arial, sans-serif;
-      color: white;
-    }
-
-    .topo {
-      background-color: rgba(0, 0, 0, 0.8);
-      padding: 10px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo img {
-      height: 50px;
-    }
-
-    .menu a {
-      color: white;
-      text-decoration: none;
-      margin-left: 20px;
-      font-weight: bold;
-      transition: color 0.3s ease;
-    }
-
-    .menu a:hover {
-      color: #ff4500;
-    }
-
-    .conteudo-centro {
-      text-align: center;
-      padding: 100px 20px;
-      max-width: 900px;
-      margin: 120px auto;
-      background-color: rgba(0, 0, 0, 0.6);
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    }
-
-    .titulo-principal {
-      font-size: 2.5em;
-      margin-bottom: 30px;
-    }
-
-    .lista-eventos {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-    }
-
-    .card-evento {
-      background-color: rgba(255, 255, 255, 0.1);
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
-      text-align: left;
-    }
-
-    .card-evento h3 {
-      color: #ff4500;
-      margin-top: 0;
-    }
-  </style>
+  <script>
+    const usuarioLogado = false; // Altere para true se quiser simular login
+    document.querySelectorAll('.botao-evento').forEach(btn => {
+      if (usuarioLogado) btn.textContent = 'Inscreva-se';
+    });
+  </script>
 </body>
 </html>

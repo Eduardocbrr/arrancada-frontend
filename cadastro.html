@@ -10,101 +10,106 @@
     body {
       margin: 0;
       padding: 0;
-      background-image: url('https://media.jornaldooeste.com.br/2022/11/89dbd918-arrancada-guarapuava02.jpeg');
-      background-size: cover;
-      background-position: center;
       font-family: Arial, sans-serif;
+      background: url('https://media.jornaldooeste.com.br/2022/11/89dbd918-arrancada-guarapuava02.jpeg') no-repeat center center fixed;
+      background-size: cover;
     }
 
     header {
       background: #000;
-      padding: 10px 0;
-      text-align: center;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header img {
+      height: 40px;
     }
 
     header nav a {
       color: #fff;
-      margin: 0 15px;
       text-decoration: none;
+      margin-left: 20px;
       font-weight: bold;
     }
 
-    .form-container {
-      max-width: 600px;
-      margin: 100px auto;
-      background-color: rgba(0, 0, 0, 0.8);
-      padding: 30px;
-      border-radius: 10px;
-      color: #fff;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
 
-    .form-container h2 {
+    .formulario {
+      background-color: rgba(0, 0, 0, 0.85);
+      color: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .formulario h2 {
       text-align: center;
       margin-bottom: 20px;
     }
 
-    .form-container label {
+    .formulario label {
       display: block;
-      margin-bottom: 5px;
-      margin-top: 15px;
+      margin: 10px 0 5px;
+      font-weight: bold;
     }
 
-    .form-container input,
-    .form-container select {
+    .formulario input,
+    .formulario select {
       width: 100%;
       padding: 10px;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       margin-bottom: 10px;
     }
 
-    .form-container button {
-      width: 100%;
+    .formulario button {
       background-color: orange;
       color: #000;
-      font-weight: bold;
-      border: none;
       padding: 10px;
-      border-radius: 5px;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
       cursor: pointer;
-      transition: background-color 0.3s;
     }
 
-    .form-container button:hover {
-      background-color: darkorange;
-    }
-
-    .moto-extra {
+    .moto-adicional {
       position: relative;
-      padding-top: 20px;
+      padding: 15px;
+      background-color: #222;
+      border-radius: 10px;
+      margin-bottom: 15px;
     }
 
-    .remove-btn {
+    .moto-adicional .remover {
       position: absolute;
-      top: 0;
-      right: 0;
+      top: 10px;
+      right: 10px;
       background: red;
       color: #fff;
       border: none;
       border-radius: 50%;
       width: 25px;
       height: 25px;
+      font-weight: bold;
       cursor: pointer;
-    }
-
-    #valorTotal {
-      font-size: 1.2rem;
-      text-align: center;
-      margin-top: 20px;
     }
   </style>
 </head>
 
 <body>
   <header>
+    <a href="index.html"><img src="/logo.png" alt="Logo Arrancada Roraima" /></a>
     <nav>
-      <a href="index.html"><img src="logo.png" alt="Logo Arrancada Roraima" style="height: 30px; vertical-align: middle;" /></a>
       <a href="index.html">Home</a>
       <a href="eventos.html">Eventos</a>
       <a href="contato.html">Contato</a>
@@ -113,145 +118,123 @@
     </nav>
   </header>
 
-  <div class="form-container">
-    <h2>Inscrição de Piloto</h2>
-    <form id="formCadastro">
-      <label>Nome do Preparador</label>
-      <input type="text" id="preparador" placeholder="Nome ou apelido" required />
+  <div class="container">
+    <main class="formulario">
+      <h2>Inscrição de Piloto</h2>
+      <form id="formCadastro">
+        <label for="preparador">Nome do Preparador</label>
+        <input type="text" id="preparador" placeholder="Nome ou apelido" required />
 
-      <label>Nome da Equipe</label>
-      <input type="text" id="equipe" placeholder="Nome da equipe" required />
+        <label for="equipe">Nome da Equipe</label>
+        <input type="text" id="equipe" placeholder="Nome da equipe" required />
 
-      <div id="motosContainer">
-        <div class="moto">
-          <label>Moto</label>
-          <input type="text" class="motoNome" placeholder="Modelo ou apelido" required />
+        <div id="motos">
+          <div class="moto-adicional">
+            <button type="button" class="remover" onclick="removerMoto(this)">x</button>
+            <label for="moto">Moto</label>
+            <input type="text" name="moto" placeholder="Modelo ou apelido" required />
 
-          <label>Número da Moto</label>
-          <input type="text" class="numeroMoto" placeholder="Ex: 45" required />
+            <label for="numero">Número da Moto</label>
+            <input type="text" name="numero" placeholder="Ex: 45" required />
 
-          <label>Cor da Moto</label>
-          <input type="text" class="corMoto" placeholder="Ex: Vermelha" required />
+            <label for="cor">Cor da Moto</label>
+            <input type="text" name="cor" placeholder="Ex: Vermelha" required />
 
-          <label>Categoria da Moto</label>
-          <select class="categoriaMoto" required>
-            <option value="">-- Selecione --</option>
-            <option>4mm</option>
-            <option>70mm</option>
-            <option>CRF</option>
-            <option>City</option>
-            <option>Moto</option>
-          </select>
+            <label for="categoria">Categoria da Moto</label>
+            <select name="categoria" required>
+              <option>-- Selecione --</option>
+              <option>4mm</option>
+              <option>70mm</option>
+              <option>CRF</option>
+              <option>City</option>
+              <option>Moto</option>
+            </select>
+          </div>
         </div>
-      </div>
 
-      <button type="button" onclick="adicionarMoto()">+ INCLUIR MAIS MOTOS</button>
+        <button type="button" onclick="adicionarMoto()">+ INCLUIR MAIS MOTOS</button>
 
-      <label>Nome do Piloto</label>
-      <input type="text" id="nomePiloto" placeholder="Nome do piloto da moto" required />
+        <label for="piloto">Nome do Piloto</label>
+        <input type="text" id="piloto" placeholder="Nome do piloto da moto" required />
 
-      <label>E-mail do Piloto</label>
-      <input type="email" id="email" placeholder="E-mail para receber a confirmação" required />
+        <label for="email">E-mail do Piloto</label>
+        <input type="email" id="email" placeholder="E-mail para receber a confirmação" required />
 
-      <label>Evento</label>
-      <select id="evento" required>
-        <option value="">-- Selecione --</option>
-        <option>Campeonato – 15/06/2024 – AABB</option>
-        <option>Desafio Noturno – 20/07/2024 – Reta do Aeroporto</option>
-      </select>
+        <p id="valorTotal">Valor Total: R$ 0,00</p>
 
-      <div id="valorTotal">Valor Total: R$ 0,00</div>
-
-      <button type="submit">AVANÇAR</button>
-    </form>
+        <button type="submit">AVANÇAR</button>
+      </form>
+    </main>
   </div>
 
   <script>
+    const form = document.getElementById("formCadastro");
+    const motosContainer = document.getElementById("motos");
+    const valorTotal = document.getElementById("valorTotal");
     let valorPorMoto = 50;
-    let motosCount = 1;
 
-    function atualizarValor() {
-      const total = motosCount * valorPorMoto;
-      document.getElementById('valorTotal').textContent = `Valor Total: R$ ${total.toFixed(2).replace('.', ',')}`;
-    }
-
-    function adicionarMoto() {
-      motosCount++;
-      atualizarValor();
-      const container = document.getElementById('motosContainer');
-
-      const div = document.createElement('div');
-      div.classList.add('moto', 'moto-extra');
-
-      div.innerHTML = `
-        <button type="button" class="remove-btn" onclick="removerMoto(this)">×</button>
-        <label>Moto</label>
-        <input type="text" class="motoNome" placeholder="Modelo ou apelido" required />
-
-        <label>Número da Moto</label>
-        <input type="text" class="numeroMoto" placeholder="Ex: 45" required />
-
-        <label>Cor da Moto</label>
-        <input type="text" class="corMoto" placeholder="Ex: Vermelha" required />
-
-        <label>Categoria da Moto</label>
-        <select class="categoriaMoto" required>
-          <option value="">-- Selecione --</option>
-          <option>4mm</option>
-          <option>70mm</option>
-          <option>CRF</option>
-          <option>City</option>
-          <option>Moto</option>
-        </select>
-      `;
-
-      container.appendChild(div);
-    }
-
-    function removerMoto(btn) {
-      btn.parentElement.remove();
-      motosCount--;
-      atualizarValor();
-    }
-
-    document.getElementById('formCadastro').addEventListener('submit', async function (e) {
+    form.addEventListener("submit", (e) => {
       e.preventDefault();
 
-      const preparador = document.getElementById('preparador').value;
-      const equipe = document.getElementById('equipe').value;
-      const nomePiloto = document.getElementById('nomePiloto').value;
-      const email = document.getElementById('email').value;
-      const evento = document.getElementById('evento').value;
-
-      const motos = Array.from(document.querySelectorAll('#motosContainer .moto')).map((el) => {
+      const motos = Array.from(motosContainer.querySelectorAll(".moto-adicional")).map((motoEl) => {
         return {
-          moto: el.querySelector('.motoNome').value,
-          numero: el.querySelector('.numeroMoto').value,
-          cor: el.querySelector('.corMoto').value,
-          categoria: el.querySelector('.categoriaMoto').value,
+          moto: motoEl.querySelector('[name="moto"]').value,
+          numero: motoEl.querySelector('[name="numero"]').value,
+          cor: motoEl.querySelector('[name="cor"]').value,
+          categoria: motoEl.querySelector('[name="categoria"]').value
         };
       });
 
-      try {
-        const response = await fetch('https://arrancada-backend.onrender.com/criar-pagamento', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ preparador, equipe, nomePiloto, email, evento, motos })
-        });
+      const dados = {
+        preparador: document.getElementById("preparador").value,
+        equipe: document.getElementById("equipe").value,
+        piloto: document.getElementById("piloto").value,
+        email: document.getElementById("email").value,
+        motos: motos
+      };
 
-        const data = await response.json();
-        if (data.link) {
-          window.location.href = data.link;
-        } else {
-          alert('Erro ao gerar link de pagamento.');
-        }
-      } catch (error) {
-        alert('Erro ao conectar com o servidor.');
-        console.error(error);
-      }
+      fetch("https://arrancada-backend.onrender.com/criar-pagamento", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(dados)
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.link) {
+            window.location.href = data.link;
+          } else {
+            alert("Erro ao gerar link de pagamento.");
+          }
+        })
+        .catch(error => {
+          alert("Erro ao conectar com o servidor.");
+          console.error(error);
+        });
     });
 
-    atualizarValor();
+    function adicionarMoto() {
+      const novo = motosContainer.children[0].cloneNode(true);
+      novo.querySelectorAll("input, select").forEach(el => el.value = "");
+      novo.querySelector(".remover").style.display = "block";
+      motosContainer.appendChild(novo);
+      atualizarValor();
+    }
+
+    function removerMoto(botao) {
+      if (motosContainer.children.length > 1) {
+        botao.parentElement.remove();
+        atualizarValor();
+      }
+    }
+
+    function atualizarValor() {
+      const total = motosContainer.children.length * valorPorMoto;
+      valorTotal.textContent = `Valor Total: R$ ${total.toFixed(2).replace(".", ",")}`;
+    }
+
+    window.onload = atualizarValor;
   </script>
 </body>
 

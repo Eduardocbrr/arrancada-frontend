@@ -189,17 +189,36 @@
 
   document.getElementById('formCadastro').addEventListener('submit', async function(e) {
     e.preventDefault();
-    const dados = {
-      preparador: document.getElementById('preparador').value,
-      equipe: document.getElementById('equipe').value,
-      piloto: document.getElementById('piloto').value,
-      email: document.getElementById('email').value,
-      moto: document.getElementById('moto').value,
-      numero: document.getElementById('numero').value,
-      cor: document.getElementById('cor').value,
-      categoria: document.getElementById('categoria').options[document.getElementById('categoria').selectedIndex].text,
-      evento: document.getElementById('evento').value
-    };
+    const motos = [];
+
+motos.push({
+  piloto: document.getElementById('piloto').value,
+  moto: document.getElementById('moto').value,
+  numero: document.getElementById('numero').value,
+  cor: document.getElementById('cor').value,
+  categoria: document.getElementById('categoria').options[document.getElementById('categoria').selectedIndex].text
+});
+
+document.querySelectorAll('#motosExtras .moto-extra').forEach(div => {
+  const inputs = div.querySelectorAll('input, select');
+  motos.push({
+    piloto: inputs[0].value,
+    moto: inputs[1].value,
+    numero: inputs[2].value,
+    cor: inputs[3].value,
+    categoria: inputs[4].options[inputs[4].selectedIndex].text
+  });
+});
+
+const dados = {
+  preparador: document.getElementById('preparador').value,
+  equipe: document.getElementById('equipe').value,
+  email: document.getElementById('email').value,
+  evento: document.getElementById('evento').value,
+  motos,
+  valor: motos.length * 50
+};
+
 
     try {
       const response = await fetch("https://arrancada-backend.onrender.com/criar-pagamento", {

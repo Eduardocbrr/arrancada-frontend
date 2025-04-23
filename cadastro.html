@@ -165,27 +165,44 @@
   }
 
   function adicionarMoto() {
-    extraMotos++;
-    total += 50;
-    const div = document.createElement('div');
-    div.classList.add('moto-extra');
-    div.innerHTML = `
-      <label>Nome do Piloto</label><input type="text" required />
-      <label>Moto</label><input type="text" required />
-      <label>Número da Moto</label><input type="text" required />
-      <label>Cor da Moto</label><input type="text" required />
-      <label>Categoria da Moto</label>
-      <select required>
-        <option value="">-- Selecione --</option>
-        <option value="50">4MM</option>
-        <option value="50">70MM</option>
-        <option value="50">CRF250</option>
-        <option value="50">City até 300cc</option>
-      </select>`;
-    document.getElementById('motosExtras').appendChild(div);
-    document.getElementById('valorSpan').textContent = total.toFixed(2);
-    document.getElementById('valorTotal').style.display = 'block';
-  }
+  extraMotos++;
+  total += 50;
+
+  const div = document.createElement('div');
+  div.classList.add('moto-extra');
+  div.innerHTML = `
+    <label>Nome do Piloto</label><input type="text" required />
+    <label>Moto</label><input type="text" required />
+    <label>Número da Moto</label><input type="text" required />
+    <label>Cor da Moto</label><input type="text" required />
+    <label>Categoria da Moto</label>
+    <select required>
+      <option value="">-- Selecione --</option>
+      <option value="50">4MM</option>
+      <option value="50">70MM</option>
+      <option value="50">CRF250</option>
+      <option value="50">City até 300cc</option>
+    </select>
+    <button type="button" class="botao remover-moto" style="margin-top:15px; background:#a00;" onclick="removerMoto(this)">Remover</button>
+  `;
+
+  document.getElementById('motosExtras').appendChild(div);
+  atualizarValor();
+}
+
+function removerMoto(botao) {
+  const div = botao.closest('.moto-extra');
+  div.remove();
+  extraMotos--;
+  total -= 50;
+  atualizarValor();
+}
+
+function atualizarValor() {
+  document.getElementById('valorSpan').textContent = total.toFixed(2);
+  document.getElementById('valorTotal').style.display = total > 0 ? 'block' : 'none';
+}
+
 
   document.getElementById('formCadastro').addEventListener('submit', async function(e) {
     e.preventDefault();

@@ -1,241 +1,57 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Inscrição de Piloto</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background: url('https://media.jornaldooeste.com.br/2022/11/89dbd918-arrancada-guarapuava02.jpeg') no-repeat center center fixed;
-      background-size: cover;
-    }
-
-    header {
-      background: #000;
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    header img {
-      height: 40px;
-    }
-
-    header nav a {
-      color: #fff;
-      text-decoration: none;
-      margin-left: 20px;
-      font-weight: bold;
-    }
-
-    .container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
-
-    .formulario {
-      background-color: rgba(0, 0, 0, 0.85);
-      color: #fff;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-      width: 100%;
-      max-width: 500px;
-    }
-
-    .formulario h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .formulario label {
-      display: block;
-      margin: 10px 0 5px;
-      font-weight: bold;
-    }
-
-    .formulario input,
-    .formulario select {
-      width: 100%;
-      padding: 10px;
-      border: none;
-      border-radius: 8px;
-      margin-bottom: 10px;
-    }
-
-    .formulario button {
-      background-color: orange;
-      color: #000;
-      padding: 10px;
-      width: 100%;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .moto-adicional {
-      position: relative;
-      padding: 15px;
-      background-color: #222;
-      border-radius: 10px;
-      margin-bottom: 15px;
-    }
-
-    .moto-adicional .remover {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: red;
-      color: #fff;
-      border: none;
-      border-radius: 50%;
-      width: 25px;
-      height: 25px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-  </style>
 </head>
-
 <body>
-  <header>
-    <a href="index.html"><img src="/logo.png" alt="Logo Arrancada Roraima" /></a>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="eventos.html">Eventos</a>
-      <a href="contato.html">Contato</a>
-      <a href="cadastro.html">Inscrição Pilotos</a>
-      <a href="ingressos.html">Ingressos</a>
+  <header class="logo">
+    <a href="index.html">
+      <img src="ChatGPT Image 23 de abr. de 2025, 08_35_58.png" alt="Arrancada Roraima" />
+    </a>
+    <nav class="menu">
+      <a href="index.html" class="menu-item">Home</a>
+      <a href="eventos.html" class="menu-item">Eventos</a>
+      <a href="contato.html" class="menu-item">Contato</a>
+      <a href="cadastro.html" class="menu-item ativo">Inscrição de Piloto</a>
+      <a href="https://ingressos.exemplo.com" target="_blank" class="menu-item">Ingressos Aqui</a>
+      <a href="login.html" class="menu-item">Login</a>
     </nav>
   </header>
 
-  <div class="container">
-    <main class="formulario">
-      <h2>Inscrição de Piloto</h2>
-      <form id="formCadastro">
-        <label for="preparador">Nome do Preparador</label>
-        <input type="text" id="preparador" placeholder="Nome ou apelido" required />
+  <main class="conteudo">
+    <section class="banner">
+      <!-- Banner do evento -->
+      <img src="https://www.velopark.com.br/velopark/upload/site_banner/web/g/136.png?v1" alt="Banner do Evento" class="banner-imagem">
+    </section>
 
-        <label for="equipe">Nome da Equipe</label>
-        <input type="text" id="equipe" placeholder="Nome da equipe" required />
+    <h1>Inscrição de Piloto</h1>
+    <form class="formulario-inscricao">
+      <label>Nome do Preparador</label>
+      <input type="text" placeholder="Nome ou apelido" required />
 
-        <div id="motos">
-          <div class="moto-adicional">
-            <button type="button" class="remover" onclick="removerMoto(this)">x</button>
-            <label for="moto">Moto</label>
-            <input type="text" name="moto" placeholder="Modelo ou apelido" required />
+      <label>Nome da Equipe</label>
+      <input type="text" placeholder="Nome da equipe" required />
 
-            <label for="numero">Número da Moto</label>
-            <input type="text" name="numero" placeholder="Ex: 45" required />
+      <label>Moto</label>
+      <input type="text" placeholder="Modelo ou apelido da moto" required />
 
-            <label for="cor">Cor da Moto</label>
-            <input type="text" name="cor" placeholder="Ex: Vermelha" required />
+      <label>Número da Moto</label>
+      <input type="text" placeholder="Ex: 45" required />
 
-            <label for="categoria">Categoria da Moto</label>
-            <select name="categoria" required>
-              <option>-- Selecione --</option>
-              <option>4mm</option>
-              <option>70mm</option>
-              <option>CRF</option>
-              <option>City</option>
-              <option>Moto</option>
-            </select>
-          </div>
-        </div>
+      <label>Cor da Moto</label>
+      <input type="text" placeholder="Ex: Vermelha" required />
 
-        <button type="button" onclick="adicionarMoto()">+ INCLUIR MAIS MOTOS</button>
+      <button type="button" class="botao-evento">+ Incluir mais motos</button>
 
-        <label for="piloto">Nome do Piloto</label>
-        <input type="text" id="piloto" placeholder="Nome do piloto da moto" required />
+      <label>Nome do Piloto</label>
+      <input type="text" placeholder="Nome do piloto da moto" required />
 
-        <label for="email">E-mail do Piloto</label>
-        <input type="email" id="email" placeholder="E-mail para receber a confirmação" required />
+      <label>E-mail do Piloto</label>
+      <input type="email" placeholder="E-mail para receber a confirmação" required />
 
-        <p id="valorTotal">Valor Total: R$ 0,00</p>
-
-        <button type="submit">AVANÇAR</button>
-      </form>
-    </main>
-  </div>
-
-  <script>
-    const form = document.getElementById("formCadastro");
-    const motosContainer = document.getElementById("motos");
-    const valorTotal = document.getElementById("valorTotal");
-    let valorPorMoto = 50;
-
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-
-      const motos = Array.from(motosContainer.querySelectorAll(".moto-adicional")).map((motoEl) => {
-        return {
-          moto: motoEl.querySelector('[name="moto"]').value,
-          numero: motoEl.querySelector('[name="numero"]').value,
-          cor: motoEl.querySelector('[name="cor"]').value,
-          categoria: motoEl.querySelector('[name="categoria"]').value
-        };
-      });
-
-      const dados = {
-        preparador: document.getElementById("preparador").value,
-        equipe: document.getElementById("equipe").value,
-        piloto: document.getElementById("piloto").value,
-        email: document.getElementById("email").value,
-        motos: motos
-      };
-
-      fetch("https://arrancada-backend.onrender.com/criar-pagamento", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(dados)
-      })
-        .then(res => res.json())
-        .then(data => {
-          if (data.link) {
-            window.location.href = data.link;
-          } else {
-            alert("Erro ao gerar link de pagamento.");
-          }
-        })
-        .catch(error => {
-          alert("Erro ao conectar com o servidor.");
-          console.error(error);
-        });
-    });
-
-    function adicionarMoto() {
-      const novo = motosContainer.children[0].cloneNode(true);
-      novo.querySelectorAll("input, select").forEach(el => el.value = "");
-      novo.querySelector(".remover").style.display = "block";
-      motosContainer.appendChild(novo);
-      atualizarValor();
-    }
-
-    function removerMoto(botao) {
-      if (motosContainer.children.length > 1) {
-        botao.parentElement.remove();
-        atualizarValor();
-      }
-    }
-
-    function atualizarValor() {
-      const total = motosContainer.children.length * valorPorMoto;
-      valorTotal.textContent = `Valor Total: R$ ${total.toFixed(2).replace(".", ",")}`;
-    }
-
-    window.onload = atualizarValor;
-  </script>
-</body>
-
-</html>
+      <label>Categoria da Moto</label>
+      <select required>
+        <option>

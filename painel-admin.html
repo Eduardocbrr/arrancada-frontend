@@ -14,7 +14,7 @@
 
     .painel-container h2 {
       font-size: 28px;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
 
     .painel-links {
@@ -42,6 +42,20 @@
       color: #000;
       box-shadow: 0 6px 16px rgba(0,0,0,0.2);
     }
+
+    .sair-btn {
+      background: crimson;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      float: right;
+    }
+
+    .sair-btn:hover {
+      background: #a80000;
+    }
   </style>
 </head>
 <body>
@@ -54,18 +68,34 @@
       <a href="eventos.html" class="menu-item">Eventos</a>
       <a href="contato.html" class="menu-item">Contato</a>
       <a href="cadastro.html" class="menu-item">Inscrição de Piloto</a>
-      <a href="login.html" class="menu-item ativo">Login</a>
+      <a href="login.html" class="menu-item">Login</a>
     </nav>
   </header>
 
   <main class="painel-container">
-    <h2>Painel do Administrador</h2>
+    <button class="sair-btn" onclick="logout()">Sair</button>
+    <h2 id="boasVindas">Painel do Administrador</h2>
     <div class="painel-links">
-      <a href="gerenciar-eventos.html">Gerenciar Eventos</a>
+      <a href="gerenciar-eventos.html">Cadastrar Evento</a>
       <a href="inscritos.html">Ver Inscritos</a>
       <a href="planilhas.html">Baixar Planilhas</a>
       <a href="logout.html">Sair</a>
     </div>
   </main>
+
+  <script>
+    const usuario = JSON.parse(localStorage.getItem("usuario"));
+
+    if (!usuario || usuario.tipo !== "admin") {
+      window.location.href = "login.html";
+    }
+
+    document.getElementById("boasVindas").innerText = `Painel do Administrador - ${usuario.email}`;
+
+    function logout() {
+      localStorage.removeItem("usuario");
+      window.location.href = "login.html";
+    }
+  </script>
 </body>
 </html>

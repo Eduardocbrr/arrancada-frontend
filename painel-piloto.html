@@ -84,33 +84,39 @@
   </main>
 
   <script>
-    const usuario = JSON.parse(localStorage.getItem("usuario"));
+    // Carrega as informações do usuário logado
+    const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
 
+    // Verifica se o usuário está logado e se é um piloto
     if (!usuario || usuario.tipo !== "piloto") {
-      window.location.href = "login.html";
+      window.location.href = "login.html"; // Redireciona para a página de login
     }
 
+    // Exibe o nome do usuário na página
     document.getElementById("boasVindas").innerText = `Bem-vindo, ${usuario.email}`;
 
+    // Função para logout
     function logout() {
-      localStorage.removeItem("usuario");
-      window.location.href = "login.html";
+      localStorage.removeItem("usuarioLogado"); // Remove o usuário do localStorage
+      window.location.href = "login.html"; // Redireciona para a página de login
     }
 
+    // Função para carregar as inscrições do piloto
     async function carregarInscricoes() {
       try {
         const res = await fetch("https://arrancada-backend.onrender.com/inscritos");
         const lista = await res.json();
-        const minhas = lista.filter(item => item.Email === usuario.email);
+        const minhas = lista.filter(item => item.Email === usuario.email); // Filtra as inscrições do piloto
 
         const tbody = document.querySelector("#tabelaInscritos tbody");
-        tbody.innerHTML = "";
+        tbody.innerHTML = ""; // Limpa o conteúdo da tabela
 
         if (minhas.length === 0) {
           tbody.innerHTML = "<tr><td colspan='7'>Nenhuma inscrição encontrada.</td></tr>";
           return;
         }
 
+        // Preenche a tabela com as inscrições do piloto
         minhas.forEach(i => {
           const tr = document.createElement("tr");
           tr.innerHTML = `
@@ -129,6 +135,7 @@
       }
     }
 
+    // Chama a função para carregar as inscrições ao carregar a página
     carregarInscricoes();
   </script>
 </body>

@@ -118,6 +118,10 @@
 
         const data = await response.json();
         if (data.autorizado) {
+          // Salva os dados do login no localStorage
+          const usuario = { email, tipo: data.tipo };
+          localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
+
           if (data.tipo === "admin") {
             window.location.href = "painel-admin.html";
           } else if (data.tipo === "piloto") {

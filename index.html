@@ -37,43 +37,36 @@
         <h2>Agenda de Eventos</h2>
       </div>
       <div id="listaEventos" class="agenda-lista">
-        <!-- Eventos inseridos dinamicamente -->
+        <!-- Eventos carregados dinamicamente -->
       </div>
     </section>
   </main>
 
   <script>
-    const eventos = [
-      {
-        nome: "Campeonato Estadual de Arrancada",
-        data: "15/06/2024",
-        local: "AABB",
-        cidade: "Boa Vista - RR"
-      },
-      {
-        nome: "Desafio Noturno",
-        data: "20/07/2024",
-        local: "Reta do Aeroporto",
-        cidade: "Boa Vista - RR"
-      },
-      {
-        nome: "Grande Prêmio Roraima Racing",
-        data: "10/08/2024",
-        local: "Autódromo do Anauá",
-        cidade: "Boa Vista - RR"
-      }
-    ];
+    async function carregarEventosIndex() {
+      try {
+        const resposta = await fetch('https://arrancada-backend.onrender.com/api/eventos');
+        const eventos = await resposta.json();
+        const container = document.getElementById("listaEventos");
 
-    const container = document.getElementById("listaEventos");
-    eventos.forEach(evento => {
-      const div = document.createElement("div");
-      div.className = "evento-item";
-      div.innerHTML = `
-        <strong>${evento.nome}</strong><br>
-        <span>${evento.data} - ${evento.local} - ${evento.cidade}</span>
-      `;
-      container.appendChild(div);
-    });
+        container.innerHTML = '';
+
+        eventos.forEach(evento => {
+          const div = document.createElement("div");
+          div.className = "evento-item";
+          div.innerHTML = `
+            <strong>${evento.nome}</strong><br>
+            <span>${evento.data} - ${evento.local} - ${evento.cidade}</span>
+          `;
+          container.appendChild(div);
+        });
+      } catch (erro) {
+        console.error('Erro ao carregar eventos:', erro);
+        document.getElementById("listaEventos").innerHTML = "<p>Não foi possível carregar os eventos.</p>";
+      }
+    }
+
+    carregarEventosIndex();
   </script>
 </body>
 </html>

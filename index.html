@@ -31,26 +31,24 @@
       <p>Participe dos eventos mais emocionantes de arrancada em Roraima. Cadastre-se agora e sinta a adrenalina!</p>
     </section>
 
-    <!-- Agenda de Eventos -->
     <section class="agenda-bloco">
       <div class="agenda-titulo">
         <h2>Agenda de Eventos</h2>
       </div>
       <div id="listaEventos" class="agenda-lista">
-        <!-- Eventos carregados dinamicamente -->
+        <!-- Eventos serão carregados aqui dinamicamente -->
       </div>
     </section>
   </main>
 
   <script>
-    async function carregarEventosIndex() {
-      try {
-        const resposta = await fetch('https://arrancada-backend.onrender.com/api/eventos');
-        const eventos = await resposta.json();
+    fetch("http://localhost:3000/api/eventos")
+      .then(res => res.json())
+      .then(eventos => {
         const container = document.getElementById("listaEventos");
+        container.innerHTML = ""; // Limpar
 
-        container.innerHTML = '';
-
+        // Exibir os eventos carregados
         eventos.forEach(evento => {
           const div = document.createElement("div");
           div.className = "evento-item";
@@ -60,13 +58,11 @@
           `;
           container.appendChild(div);
         });
-      } catch (erro) {
-        console.error('Erro ao carregar eventos:', erro);
-        document.getElementById("listaEventos").innerHTML = "<p>Não foi possível carregar os eventos.</p>";
-      }
-    }
-
-    carregarEventosIndex();
+      })
+      .catch(err => {
+        console.error("Erro ao buscar eventos:", err);
+        document.getElementById("listaEventos").innerHTML = "<p>Não foi possível carregar os eventos no momento.</p>";
+      });
   </script>
 </body>
 </html>

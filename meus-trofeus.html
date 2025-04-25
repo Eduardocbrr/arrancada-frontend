@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Meus Troféus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f3f3;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .trofeus-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 25px;
+    }
+
+    .trofeu {
+      text-align: center;
+      background: #fefefe;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .trofeu img {
+      width: 60px;
+      height: auto;
+      margin-bottom: 10px;
+    }
+
+    .trofeu h4 {
+      margin: 8px 0 5px;
+    }
+
+    .trofeu p {
+      margin: 2px 0;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header class="logo">
+    <a href="index.html">
+      <img src="ChatGPT Image 23 de abr. de 2025, 08_35_58.png" alt="Arrancada Roraima" />
+    </a>
+    <nav class="menu">
+      <a href="index.html" class="menu-item">Home</a>
+      <a href="eventos.html" class="menu-item">Eventos</a>
+      <a href="login.html" class="menu-item">Login</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2>Meus Troféus</h2>
+    <div class="trofeus-grid" id="trofeusGrid">
+      <p>Carregando troféus...</p>
+    </div>
+  </div>
+
+  <script>
+    const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+    if (!usuario) window.location.href = "login.html";
+
+    async function carregarTrofeus() {
+      try {
+        const resposta = await fetch("https://arrancada-backend.onrender.com/inscritos");
+        const lista = await resposta.json();
+
+        const meus = lista.filter(i =>
+          i.Email === usuario.email && ["1º", "2º", "3º"].includes(i.Colocacao)
+        );
+
+        const grid = document.getElementById("trofeusGrid");
+        grid.innerHTML = "";
+
+        if (meus.length === 0) {
+          grid.innerHTML = "<p>Você ainda não conquistou nenhum troféu 😅</p>";
+          return;
+        }
+
+        meus.forEach(t => {
+          const div = document.createElement("div");
+          div.className = "trofeu";
+          div.innerHTML = `
+            <img src="trofeu-${t.Colocacao.replace("º", "")}.png" alt="Troféu ${t.Colocacao}" />
+            <h4>${t.Evento}</h4>
+            <p>${t["Data de Inscrição"]}</p>
+            <p>${t.Local || 'Local não informado'}</p>
+            <p><strong>${t.Colocacao} lugar</strong></p>
+            <p>Melhor tempo: <strong>${t["Melhor Tempo"] || '-'}</strong></p>
+          `;
+          grid.appendChild(div);
+        });
+      } catch (erro) {
+        console.error("Erro ao carregar troféus:", erro);
+        document.getElementById("trofeusGrid").innerHTML = "<p>Erro ao carregar troféus.</p>";
+      }
+    }
+
+    carregarTrofeus();
+  </script>
+</body>
+</html>

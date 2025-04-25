@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Verificação de E-mail</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f3f3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+    }
+    .mensagem {
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      max-width: 400px;
+      width: 100%;
+    }
+    .mensagem h1 {
+      font-size: 24px;
+      color: green;
+      margin-bottom: 10px;
+    }
+    .mensagem p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    .mensagem a {
+      display: inline-block;
+      background: #111;
+      color: white;
+      padding: 12px 25px;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: 0.3s ease;
+    }
+    .mensagem a:hover {
+      background: #ff6600;
+      color: black;
+    }
+    .erro {
+      color: crimson;
+    }
+  </style>
+</head>
+<body>
+  <div class="mensagem" id="mensagem">
+    <h1>Verificando seu e-mail...</h1>
+    <p>Aguarde um instante.</p>
+  </div>
+
+  <script>
+    const div = document.getElementById("mensagem");
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get("token");
+
+    if (!token) {
+      div.innerHTML = `
+        <h1 class="erro">Token inválido!</h1>
+        <p>Não foi possível verificar o e-mail. Link expirado ou inválido.</p>
+      `;
+    } else {
+      fetch(`https://arrancada-backend.onrender.com/verificar-email?token=${token}`)
+        .then(res => {
+          if (!res.ok) throw new Error();
+          div.innerHTML = `
+            <h1>Email verificado com sucesso!</h1>
+            <p>Agora você pode acessar o painel com seu login.</p>
+            <a href="login.html">Ir para o Login</a>
+          `;
+        })
+        .catch(() => {
+          div.innerHTML = `
+            <h1 class="erro">Erro na verificação!</h1>
+            <p>O token é inválido ou já foi usado.</p>
+          `;
+        });
+    }
+  </script>
+</body>
+</html>

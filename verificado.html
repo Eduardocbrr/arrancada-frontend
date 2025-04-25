@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Verificação Pendente</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f3f3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    .mensagem {
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .mensagem h1 {
+      font-size: 22px;
+      color: #ff6600;
+      margin-bottom: 10px;
+    }
+
+    .mensagem p {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .mensagem input[type="email"] {
+      padding: 10px;
+      width: 90%;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .mensagem button {
+      background: #111;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .mensagem button:hover {
+      background: #ff6600;
+      color: black;
+    }
+
+    .mensagem .voltar {
+      display: block;
+      margin-top: 15px;
+      color: #555;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="mensagem">
+    <h1>Email ainda não verificado</h1>
+    <p>Digite seu e-mail para reenviar o link de confirmação:</p>
+    <input type="email" id="email" placeholder="Seu e-mail" required />
+    <button onclick="reenviarConfirmacao()">Reenviar Confirmação</button>
+    <p id="status"></p>
+    <a href="login.html" class="voltar">Voltar para o login</a>
+  </div>
+
+  <script>
+    async function reenviarConfirmacao() {
+      const email = document.getElementById("email").value;
+      const status = document.getElementById("status");
+
+      if (!email) {
+        status.innerText = "Informe um e-mail válido.";
+        return;
+      }
+
+      try {
+        const res = await fetch("https://arrancada-backend.onrender.com/reenviar-verificacao", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email })
+        });
+
+        const data = await res.json();
+        if (data.sucesso) {
+          status.innerText = "E-mail de verificação reenviado com sucesso.";
+        } else {
+          status.innerText = data.erro || "Erro ao reenviar o e-mail.";
+        }
+      } catch (err) {
+        status.innerText = "Erro ao conectar ao servidor.";
+        console.error(err);
+      }
+    }
+  </script>
+</body>
+</html>

@@ -6,67 +6,73 @@
   <title>Painel do Piloto</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    .painel-container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 40px 30px;
+    body {
+      display: flex;
+      min-height: 100vh;
+      margin: 0;
     }
 
-    .painel-container h2 {
-      font-size: 26px;
-      margin-bottom: 10px;
-    }
-
-    .tabela-inscritos {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-
-    .tabela-inscritos th,
-    .tabela-inscritos td {
-      border: 1px solid #ddd;
-      padding: 8px;
-    }
-
-    .tabela-inscritos th {
-      background-color: #333;
+    .sidebar {
+      width: 250px;
+      background-color: #111;
       color: #fff;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar a {
+      color: #fff;
+      text-decoration: none;
+      margin: 10px 0;
+      font-weight: bold;
+    }
+
+    .sidebar a:hover {
+      color: #ff6600;
+    }
+
+    .main {
+      flex: 1;
+      padding: 40px;
+    }
+
+    .toggle-btn {
+      background: #ff6600;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      margin-bottom: 20px;
+      cursor: pointer;
+      border-radius: 4px;
     }
 
     .sair-btn {
+      margin-top: 20px;
       background: crimson;
       color: white;
       border: none;
-      padding: 10px 20px;
+      padding: 10px;
       border-radius: 6px;
       cursor: pointer;
-      float: right;
-    }
-
-    .sair-btn:hover {
-      background: #a80000;
     }
   </style>
 </head>
 <body>
-  <header class="logo">
-    <a href="index.html">
-      <img src="ChatGPT Image 23 de abr. de 2025, 08_35_58.png" alt="Arrancada Roraima" />
-    </a>
-    <nav class="menu">
-      <a href="index.html" class="menu-item">Home</a>
-      <a href="eventos.html" class="menu-item">Eventos</a>
-      <a href="cadastro.html" class="menu-item">Inscrição</a>
-      <a href="login.html" class="menu-item">Login</a>
-    </nav>
-  </header>
-
-  <main class="painel-container">
+  <div class="sidebar" id="sidebar">
+    <a href="cadastro-moto.html">Cadastrar Moto</a>
+    <a href="proximos-eventos.html">Próximos Eventos</a>
+    <a href="minhas-competicoes.html">Minhas Competições</a>
+    <a href="meus-trofeus.html">Meus Troféus</a>
+    <a href="editar-perfil.html">Editar Perfil</a>
     <button class="sair-btn" onclick="logout()">Sair</button>
+  </div>
+
+  <div class="main">
+    <button class="toggle-btn" onclick="toggleSidebar()">Mostrar/Ocultar Menu</button>
     <h2 id="boasVindas">Bem-vindo!</h2>
     <h3>Suas Inscrições Confirmadas</h3>
-
     <table class="tabela-inscritos" id="tabelaInscritos">
       <thead>
         <tr>
@@ -81,42 +87,40 @@
       </thead>
       <tbody></tbody>
     </table>
-  </main>
+  </div>
 
   <script>
-    // Carrega as informações do usuário logado
     const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
-
-    // Verifica se o usuário está logado e se é um piloto
     if (!usuario || usuario.tipo !== "piloto") {
-      window.location.href = "login.html"; // Redireciona para a página de login
+      window.location.href = "login.html";
     }
 
-    // Exibe o nome do usuário na página
     document.getElementById("boasVindas").innerText = `Bem-vindo, ${usuario.email}`;
 
-    // Função para logout
     function logout() {
-      localStorage.removeItem("usuarioLogado"); // Remove o usuário do localStorage
-      window.location.href = "login.html"; // Redireciona para a página de login
+      localStorage.removeItem("usuarioLogado");
+      window.location.href = "login.html";
     }
 
-    // Função para carregar as inscrições do piloto
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.style.transform = sidebar.style.transform === "translateX(-250px)" ? "translateX(0)" : "translateX(-250px)";
+    }
+
     async function carregarInscricoes() {
       try {
         const res = await fetch("https://arrancada-backend.onrender.com/inscritos");
         const lista = await res.json();
-        const minhas = lista.filter(item => item.Email === usuario.email); // Filtra as inscrições do piloto
+        const minhas = lista.filter(item => item.Email === usuario.email);
 
         const tbody = document.querySelector("#tabelaInscritos tbody");
-        tbody.innerHTML = ""; // Limpa o conteúdo da tabela
+        tbody.innerHTML = "";
 
         if (minhas.length === 0) {
           tbody.innerHTML = "<tr><td colspan='7'>Nenhuma inscrição encontrada.</td></tr>";
           return;
         }
 
-        // Preenche a tabela com as inscrições do piloto
         minhas.forEach(i => {
           const tr = document.createElement("tr");
           tr.innerHTML = `
@@ -135,7 +139,6 @@
       }
     }
 
-    // Chama a função para carregar as inscrições ao carregar a página
     carregarInscricoes();
   </script>
 </body>

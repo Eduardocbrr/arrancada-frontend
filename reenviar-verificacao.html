@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reenviar Verificação</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      background: #fff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #111;
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background: #ff6600;
+      color: black;
+    }
+
+    .mensagem {
+      margin-top: 15px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Reenviar verificação de e-mail</h1>
+    <form id="formReenviar">
+      <input type="email" id="email" placeholder="Digite seu e-mail" required />
+      <button type="submit">Reenviar</button>
+    </form>
+    <div class="mensagem" id="mensagem"></div>
+  </div>
+
+  <script>
+    document.getElementById("formReenviar").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const mensagem = document.getElementById("mensagem");
+
+      try {
+        const res = await fetch("https://arrancada-backend.onrender.com/reenviar-verificacao", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ email })
+        });
+
+        const data = await res.json();
+        if (data.sucesso) {
+          mensagem.style.color = "green";
+          mensagem.textContent = "E-mail de verificação reenviado com sucesso!";
+        } else {
+          mensagem.style.color = "red";
+          mensagem.textContent = data.erro || "Erro ao reenviar e-mail.";
+        }
+      } catch (err) {
+        mensagem.style.color = "red";
+        mensagem.textContent = "Erro ao conectar com o servidor.";
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Minhas Competições</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 50px auto;
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table th, table td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+
+    table th {
+      background-color: #222;
+      color: #fff;
+    }
+
+    table tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+  <header class="logo">
+    <a href="index.html">
+      <img src="ChatGPT Image 23 de abr. de 2025, 08_35_58.png" alt="Arrancada Roraima" />
+    </a>
+    <nav class="menu">
+      <a href="index.html" class="menu-item">Home</a>
+      <a href="eventos.html" class="menu-item">Eventos</a>
+      <a href="login.html" class="menu-item">Login</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2>Histórico de Competições</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Evento</th>
+          <th>Data</th>
+          <th>Moto</th>
+          <th>Categoria</th>
+          <th>Colocação</th>
+          <th>Melhor Tempo</th>
+        </tr>
+      </thead>
+      <tbody id="tabelaCompeticoes">
+        <tr><td colspan="6">Carregando...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+    if (!usuario) window.location.href = "login.html";
+
+    async function carregarCompeticoes() {
+      try {
+        const resposta = await fetch("https://arrancada-backend.onrender.com/inscritos");
+        const lista = await resposta.json();
+
+        const minhas = lista.filter(item => item.Email === usuario.email);
+        const tbody = document.getElementById("tabelaCompeticoes");
+        tbody.innerHTML = "";
+
+        if (minhas.length === 0) {
+          tbody.innerHTML = "<tr><td colspan='6'>Nenhuma competição encontrada.</td></tr>";
+          return;
+        }
+
+        minhas.forEach(c => {
+          const linha = document.createElement("tr");
+          linha.innerHTML = `
+            <td>${c.Evento}</td>
+            <td>${c["Data de Inscrição"]}</td>
+            <td>${c.Moto}</td>
+            <td>${c.Categoria}</td>
+            <td>${c.Colocacao || '-'}</td>
+            <td>${c["Melhor Tempo"] || '-'}</td>
+          `;
+          tbody.appendChild(linha);
+        });
+      } catch (erro) {
+        console.error("Erro ao carregar histórico:", erro);
+        document.getElementById("tabelaCompeticoes").innerHTML = "<tr><td colspan='6'>Erro ao carregar dados.</td></tr>";
+      }
+    }
+
+    carregarCompeticoes();
+  </script>
+</body>
+</html>

@@ -110,17 +110,17 @@
       try {
         const response = await fetch("https://arrancada-backend.onrender.com/login", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email, senha }),
         });
 
         const data = await response.json();
+
         if (data.autorizado) {
-          // Salva os dados do login no localStorage
-          const usuario = { email, tipo: data.tipo };
-          localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
+          localStorage.setItem("usuarioLogado", JSON.stringify({
+            email,
+            tipo: data.tipo
+          }));
 
           if (data.tipo === "admin") {
             window.location.href = "painel-admin.html";
@@ -128,7 +128,7 @@
             window.location.href = "painel-piloto.html";
           }
         } else {
-          alert("Login inválido. Verifique e tente novamente.");
+          alert("Login inválido ou não verificado. Verifique seu e-mail.");
         }
       } catch (error) {
         alert("Erro ao conectar com o servidor.");

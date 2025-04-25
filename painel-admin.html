@@ -84,7 +84,7 @@
   </main>
 
   <script>
-    const usuario = JSON.parse(localStorage.getItem("usuario"));
+    const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
 
     if (!usuario || usuario.tipo !== "admin") {
       window.location.href = "login.html";
@@ -93,9 +93,11 @@
     document.getElementById("boasVindas").innerText = `Painel do Administrador - ${usuario.email}`;
 
     function logout() {
-      localStorage.removeItem("usuario");
+      localStorage.removeItem("usuarioLogado");
       window.location.href = "login.html";
     }
+
+    // Aqui você pode adicionar funções para carregar dados do painel
   </script>
 </body>
 </html>

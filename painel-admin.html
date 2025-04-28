@@ -79,7 +79,6 @@
       <a href="gerenciar-eventos.html">Cadastrar Evento</a>
       <a href="inscritos.html">Ver Inscritos</a>
       <a href="planilhas.html">Baixar Planilhas</a>
-      <a href="logout.html">Sair</a>
     </div>
   </main>
 
@@ -87,17 +86,16 @@
     const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
 
     if (!usuario || usuario.tipo !== "admin") {
+      localStorage.removeItem("usuarioLogado");
       window.location.href = "login.html";
     }
 
-    document.getElementById("boasVindas").innerText = `Painel do Administrador - ${usuario.email}`;
+    document.getElementById("boasVindas").innerText = `Olá, Admin! Você está logado como: ${usuario.email}`;
 
     function logout() {
       localStorage.removeItem("usuarioLogado");
       window.location.href = "login.html";
     }
-
-    // Aqui você pode adicionar funções para carregar dados do painel
   </script>
 </body>
 </html>
